@@ -4,7 +4,7 @@ from rest_framework import routers
 from api.views import TaskViewSet, ManageUserView, UserViewSet
 
 
-routers = routers.DefaultRouter
+routers = routers.DefaultRouter()
 routers.register('tasks', TaskViewSet)
 routers.register('users', UserViewSet)
 
