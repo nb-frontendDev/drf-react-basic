@@ -3,6 +3,9 @@ import axios from "axios";
 
 const DefApiFetch = () => {
   const [tasks, setTasks] = useState([]);
+  const [selectTask, setSelectTask] = useState([]);
+  const [id, setId] = useState();
+
 
   useEffect(() => {
     axios
