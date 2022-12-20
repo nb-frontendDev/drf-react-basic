@@ -31,7 +31,7 @@ const DefApiFetch = () => {
       });
   };
 
-    const deleteTask = () => {
+    const deleteTask = (id) => {
       axios
         .delete(`http://127.0.0.1:8000/api/tasks/${id}/`, {
           headers: {
@@ -50,6 +50,9 @@ const DefApiFetch = () => {
             <li key={task.id}>
               {task.title}
               {task.id}
+              <button onClick={() => deleteTask(task.id)}>
+                <i className="fas fa-trash-alt"></i>
+              </button>
             </li>
           ))}
         </ul>
@@ -62,9 +65,6 @@ const DefApiFetch = () => {
         <br />
         <button type="button" onClick={() => getTask()}>
           Get Task
-        </button>
-        <button type="button" onClick={() => deleteTask()}>
-          Delete Task
         </button>
         <h3>
           {selectTask.title}
