@@ -27,7 +27,7 @@ const DefApiFetch = () => {
         },
       })
       .then((res) => {
-        setSelectTask(selectTask);
+        setSelectTask(res.data);
       });
   };
 
@@ -48,7 +48,13 @@ const DefApiFetch = () => {
         onChange={(event) => setId(event.target.value)}
       />
       <br />
-      <button onClick={getTask}></button>
+      <button type="button" onClick={() => getTask()}>
+        Get Task
+      </button>
+      <h3>
+        {selectTask.title}
+        {selectTask.id}
+      </h3>
     </div>
   );
 };
