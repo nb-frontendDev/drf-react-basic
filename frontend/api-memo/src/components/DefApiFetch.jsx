@@ -19,6 +19,18 @@ const DefApiFetch = () => {
       });
   }, []);
 
+  const getTask = () => {
+    axios
+      .get(`http://127.0.0.1:8000/api/tasks/${id}/`, {
+        headers: {
+          Authorization: "Token d2a78a39bc6bc18151fa38074a0aeb92c1e81fbb",
+        },
+      })
+      .then((res) => {
+        setSelectTask(selectTask);
+      });
+  };
+
   return (
     <div>
       <ul>
@@ -29,6 +41,14 @@ const DefApiFetch = () => {
           </li>
         ))}
       </ul>
+      Set Id <br />
+      <input
+        type="text"
+        value={id}
+        onChange={(event) => setId(event.target.value)}
+      />
+      <br />
+      <button onClick={getTask}></button>
     </div>
   );
 };
