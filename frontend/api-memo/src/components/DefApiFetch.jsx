@@ -31,32 +31,47 @@ const DefApiFetch = () => {
       });
   };
 
-  return (
-    <div>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            {task.title}
-            {task.id}
-          </li>
-        ))}
-      </ul>
-      Set Id <br />
-      <input
-        type="text"
-        value={id}
-        onChange={(event) => setId(event.target.value)}
-      />
-      <br />
-      <button type="button" onClick={() => getTask()}>
-        Get Task
-      </button>
-      <h3>
-        {selectTask.title}
-        {selectTask.id}
-      </h3>
-    </div>
-  );
+    const deleteTask = () => {
+      axios
+        .delete(`http://127.0.0.1:8000/api/tasks/${id}/`, {
+          headers: {
+            Authorization: "Token d2a78a39bc6bc18151fa38074a0aeb92c1e81fbb",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    };
+
+    return (
+      <div>
+        <ul>
+          {tasks.map((task) => (
+            <li key={task.id}>
+              {task.title}
+              {task.id}
+            </li>
+          ))}
+        </ul>
+        Set Id <br />
+        <input
+          type="text"
+          value={id}
+          onChange={(event) => setId(event.target.value)}
+        />
+        <br />
+        <button type="button" onClick={() => getTask()}>
+          Get Task
+        </button>
+        <button type="button" onClick={() => deleteTask()}>
+          Delete Task
+        </button>
+        <h3>
+          {selectTask.title}
+          {selectTask.id}
+        </h3>
+      </div>
+    );
 };
 
 export default DefApiFetch;
