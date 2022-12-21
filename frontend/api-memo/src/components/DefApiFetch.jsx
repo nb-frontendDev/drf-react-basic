@@ -73,6 +73,7 @@ const DefApiFetch = () => {
           tasks.map((task) => (task.id === editedTask.id ? res.data : task))
         );
       });
+    setEditedTask({ id: "", title: "" });
   };
 
   const handleInputChange = () => (event) => {
@@ -90,6 +91,9 @@ const DefApiFetch = () => {
             {task.id}
             <button onClick={() => deleteTask(task.id)}>
               <i className="fas fa-trash-alt"></i>
+            </button>
+            <button onClick={() => setEditedTask(task)}>
+              <i className="fas fa-pen"></i>
             </button>
           </li>
         ))}
@@ -116,9 +120,15 @@ const DefApiFetch = () => {
         placeholder="New Task"
         required
       />
-      <button type="button" onClick={() => newTask(editedTask)}>
-        Create
-      </button>
+      {editedTask.id ? (
+        <button type="button" onClick={() => editTask(editedTask)}>
+          Edit
+        </button>
+      ) : (
+        <button type="button" onClick={() => newTask(editedTask)}>
+          Create
+        </button>
+      )}
     </div>
   );
 };
